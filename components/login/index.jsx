@@ -14,6 +14,10 @@ let captchaArray = [
   "R54",
   "F55",
   "GGW",
+  "Hae",
+  "YuS",
+  "ITU",
+  "8wD",
 ];
 
 const Login = () => {

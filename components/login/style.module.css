@@ -127,11 +127,21 @@
     width: 100%;
     padding-bottom: 50px;
     height: auto;
+    position: absolute;
+    z-index: 1;
+  }
+  .alert-danger {
+    width: 230px;
+  }
+  .column-1 {
+    width: 250px;
   }
   .numLogo {
     width: 130px;
   }
   .row-2 {
     width: 100%;
+    display: block;
+    position: relative;
   }
 }

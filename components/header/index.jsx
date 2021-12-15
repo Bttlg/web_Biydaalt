@@ -15,6 +15,7 @@ import {
 
 import Login from "../login";
 import Navbar from "../navbar/Navbar";
+import Home from "../home/Home";
 
 const Header = () => {
   return (
@@ -22,9 +23,9 @@ const Header = () => {
       <HashRouter>
         <div className="componentContainer">
           <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" component={Home} />
+            {/* <Route exact path="/" component={Login} /> */}
             <Route path="/Login" component={Login} />
-            <Route exact path="/Navbar" component={Navbar} />
           </Switch>
         </div>
       </HashRouter>
