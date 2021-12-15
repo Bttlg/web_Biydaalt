@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./Home.css";
 import Navbar from "../navbar/Navbar";
 import Menu from "../menu/Menu";
-import { useState } from "react/cjs/react.development";
+import Modal from "../modal/Modal";
+import Shadow from "../modal/shadow/Shadow";
 
 const Home = () => {
   const [tolow, setTolow] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  window.addEventListener(
+    "resize",
+    function (event) {
+      console.log(event.target.innerWidth);
+      setWindowWidth(event.target.innerWidth);
+    },
+    true
+  );
   return (
-    <div className="homeContainer">
+    <div className="homeContainer" style={{ width: windowWidth }}>
+      {showModal ? <Shadow /> : null}
+      {showModal ? (
+        <Modal showModal={showModal} setShowModal={setShowModal} />
+      ) : null}
       <Navbar tolow={tolow} setTolow={setTolow} />
-      {tolow ? <Menu /> : null}
-      {/* <div className="logoutSelect">
-        <p>Та гарахыг зөвшөөрч байна уу?</p>
-        <p>Тийм</p>
-        <p>Үгүй</p>
-      </div> */}
+      {tolow ? (
+        <Menu showModal={showModal} setShowModal={setShowModal} />
+      ) : null}
     </div>
   );
 };

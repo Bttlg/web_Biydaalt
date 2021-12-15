@@ -16,7 +16,12 @@ const Navbar = ({ tolow, setTolow }) => {
     }
   };
   return (
-    <div className="navbarContainer" style={{ width: w }}>
+    <div
+      className="navbarContainer"
+      style={{
+        width: "100%",
+      }}
+    >
       <div className="navbarRow-1">
         <BiMenu className="menuIcon" onClick={changeTolow} />
         <img
