@@ -49,13 +49,13 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
-  font-size: 1vw;
+  font-size: 18px;
 }
 .usernameInput,
 .passwordInput,
 .captchaInput {
   margin-top: 30px;
-  width: 80%;
+  width: 250px;
   border: none;
   background-color: #1f4785;
   border-bottom: solid 1px white;
@@ -82,7 +82,7 @@
 
 .captcha {
   margin-top: 50px;
-  font-size: 1.3vw;
+  font-size: 25px;
   color: #be623a;
   font-weight: 400;
 }
@@ -118,9 +118,20 @@
   width: 65%;
   opacity: 0.5;
 }
-/* 
+
 @media (max-width: 991px) {
-  .row-1 {
-    background-color: black;
+  .loginContainer {
+    flex-direction: column;
   }
-} */
+  .row-1 {
+    width: 100%;
+    padding-bottom: 50px;
+    height: auto;
+  }
+  .numLogo {
+    width: 130px;
+  }
+  .row-2 {
+    width: 100%;
+  }
+}

@@ -55,9 +55,10 @@ const Login = () => {
       <div className="row-1">
         <div className="column-1">
           <img
+            className="numLogo"
             src="https://sisi.num.edu.mn/sisi_v4/modules/login/Content-num75/logo-white.png"
             alt=""
-            width="40%"
+            width="50%"
             height="auto"
           />
           <div className="alert">{error}</div>
