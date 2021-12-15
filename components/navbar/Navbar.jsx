@@ -7,11 +7,18 @@ import "./Navbar.css";
 let w = window.innerWidth;
 let h = window.innerHeight;
 
-const Navbar = () => {
+const Navbar = ({ tolow, setTolow }) => {
+  const changeTolow = () => {
+    if (tolow) {
+      setTolow(false);
+    } else {
+      setTolow(true);
+    }
+  };
   return (
     <div className="navbarContainer" style={{ width: w }}>
       <div className="navbarRow-1">
-        <BiMenu className="menuIcon" />
+        <BiMenu className="menuIcon" onClick={changeTolow} />
         <img
           src="https://sisi.num.edu.mn/sisi_v4/static/image/sisi-logo-black.png"
           alt=""

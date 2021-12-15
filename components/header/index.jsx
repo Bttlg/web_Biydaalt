@@ -24,6 +24,7 @@ const Header = () => {
         <div className="componentContainer">
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/Home" component={Home} />
             {/* <Route exact path="/" component={Login} /> */}
             <Route path="/Login" component={Login} />
           </Switch>

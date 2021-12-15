@@ -2,25 +2,20 @@ import React from "react";
 
 import "./Home.css";
 import Navbar from "../navbar/Navbar";
-let w = window.innerWidth;
-let h = window.innerHeight;
+import Menu from "../menu/Menu";
+import { useState } from "react/cjs/react.development";
 
 const Home = () => {
+  const [tolow, setTolow] = useState(true);
   return (
     <div className="homeContainer">
-      <Navbar />
-      <div className="homeColumn-2">
-        <div className="homeRow-1" style={{ height: h }}>
-          <ul>
-            <li>Нүүр хуудас</li>
-            <li>Багш нарын жагсаалт</li>
-            <li>Хичээлийн жагсаалт</li>
-          </ul>
-          <p className="logout" style={{ marginTop: h / 1.8 }}>
-            Гарах
-          </p>
-        </div>
-      </div>
+      <Navbar tolow={tolow} setTolow={setTolow} />
+      {tolow ? <Menu /> : null}
+      {/* <div className="logoutSelect">
+        <p>Та гарахыг зөвшөөрч байна уу?</p>
+        <p>Тийм</p>
+        <p>Үгүй</p>
+      </div> */}
     </div>
   );
 };

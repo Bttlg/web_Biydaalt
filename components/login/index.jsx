@@ -38,7 +38,7 @@ const Login = () => {
         // history.push("/Navbar");
         setError("");
         document.querySelector(".alert").classList.remove("alert-danger");
-        window.location.replace("/#/Navbar");
+        window.location.replace("/#/Home");
       } else if (captchaValue === "" || username === "" || password === "") {
         document.querySelector(".alert").classList.add("alert-danger");
         setError("Шаардлагатай талбарыг бөглөнө үү.");
