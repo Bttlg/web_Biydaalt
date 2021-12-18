@@ -3,6 +3,7 @@ import css from "./style.module.css";
 import "./style.module.css";
 import ClientCaptcha from "react-client-captcha";
 import { useHistory, useLocation } from "react-router-dom";
+import axios from "axios";
 
 let captchaArray = [
   "svr",
@@ -36,6 +37,18 @@ const Login = () => {
     if (event.key === "Enter" || event.type == "click") {
       if (captcha === captchaValue && username !== "" && password !== "") {
         // history.push("/Navbar");
+        event.preventDefault();
+        const registered = {
+          username: username,
+          password: password,
+        };
+        axios
+          .post("http://localhost:8000/api/users", registered)
+          .then((response) => {
+            console.log(response.data);
+          });
+        setUsername("");
+        setPassword("");
         setError("");
         document.querySelector(".alert").classList.remove("alert-danger");
         window.location.replace("/#/Home");
@@ -54,6 +67,7 @@ const Login = () => {
       }
     }
   };
+
   return (
     <div className="loginContainer">
       <div className="row-1">
