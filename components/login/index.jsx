@@ -22,7 +22,9 @@ let captchaArray = [
 ];
 
 const Login = () => {
-  const [error, setError] = useState("");
+  const [users, setUsers] = useState();
+  let user = null;
+  const [error, setError] = useState();
   const history = useHistory();
   const location = useLocation();
   const [captcha, setCaptcha] = useState(
@@ -33,25 +35,34 @@ const Login = () => {
   const [password, setPassword] = useState("");
   let w = window.innerWidth;
   let h = window.innerHeight;
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/users").then((response) => {
+      setUsers(response.data.data);
+    });
+  }, []);
+
   const newtreh = (event) => {
     if (event.key === "Enter" || event.type == "click") {
       if (captcha === captchaValue && username !== "" && password !== "") {
         // history.push("/Navbar");
         event.preventDefault();
-        const registered = {
-          username: username,
-          password: password,
-        };
-        axios
-          .post("http://localhost:8000/api/users", registered)
-          .then((response) => {
-            console.log(response.data);
-          });
-        setUsername("");
-        setPassword("");
-        setError("");
-        document.querySelector(".alert").classList.remove("alert-danger");
-        window.location.replace("/#/Home");
+        users.forEach((el, index) => {
+          if (username === el.username && password === el.password) {
+            user = el;
+            setUsername("");
+            setPassword("");
+            setError("");
+            document.querySelector(".alert").classList.remove("alert-danger");
+            window.location.replace("/#/Home");
+            return;
+          }
+        });
+        setCaptcha(
+          captchaArray[Math.floor(Math.random() * captchaArray.length)]
+        );
+        document.querySelector(".alert").classList.add("alert-danger");
+        setError("Та нэвтрэх боломжгүй байна.");
       } else if (captchaValue === "" || username === "" || password === "") {
         document.querySelector(".alert").classList.add("alert-danger");
         setError("Шаардлагатай талбарыг бөглөнө үү.");

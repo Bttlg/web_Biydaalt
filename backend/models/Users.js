@@ -12,8 +12,20 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 4,
-    select: false,
   },
+  photo: {
+    type: String,
+    default: "no-photo.jpg",
+  },
+  email: {
+    type: String,
+  },
+  role: {
+    type: String,
+    enum: ["student", "teacher"],
+    default: "students",
+  },
+  lessons: [],
   resetPasswordToken: {
     String,
     resetPasswordExpire: Date,
@@ -24,9 +36,10 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-UserSchema.pre("save", async function () {
-  const saltPassword = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, saltPassword);
-});
+//Password hash
+// UserSchema.pre("save", async function () {
+//   const saltPassword = await bcrypt.genSalt(10);
+//   this.password = await bcrypt.hash(this.password, saltPassword);
+// });
 
 module.exports = mongoose.model("Users", UserSchema);

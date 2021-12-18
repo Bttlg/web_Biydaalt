@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import "./Home.css";
 import Navbar from "../navbar/Navbar";
@@ -13,8 +14,8 @@ const Home = () => {
   window.addEventListener(
     "resize",
     function (event) {
-      console.log(event.target.innerWidth);
       setWindowWidth(event.target.innerWidth);
+      console.log(userData);
     },
     true
   );
