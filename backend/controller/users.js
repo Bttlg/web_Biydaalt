@@ -45,16 +45,43 @@ exports.postUsers = async (req, res, next) => {
   }
 };
 
-exports.updateUser = (req, res, next) => {
-  res.send({
-    success: true,
-    data: `${req.params.id} ID-тай хэрэглэгчийн мэдээллийг өөрчлөх`,
-  });
+exports.updateUser = async (req, res, next) => {
+  try {
+    const User = await Users.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (User === null) {
+      res.send({
+        success: false,
+        Error: `${req.params.id} ID-тай хэрэглэгч байхгүй байна.`,
+      });
+    } else {
+      res.send({ success: true, data: User });
+    }
+  } catch (err) {
+    res.send({
+      success: false,
+      Error: err,
+    });
+  }
 };
 
-exports.deleteUser = (req, res, next) => {
-  res.send({
-    success: true,
-    data: `${req.params.id} ID-тай хэрэглэгчийн мэдээллийг устгах`,
-  });
+exports.deleteUser = async (req, res, next) => {
+  try {
+    const User = await Users.findByIdAndDelete(req.params.id);
+    if (User === null) {
+      res.send({
+        success: false,
+        Error: `${req.params.id} ID-тай хэрэглэгч байхгүй байна.`,
+      });
+    } else {
+      res.send({ success: true, data: User });
+    }
+  } catch (err) {
+    res.send({
+      success: false,
+      Error: err,
+    });
+  }
 };
