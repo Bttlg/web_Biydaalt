@@ -1,87 +1,54 @@
 const Users = require("../models/Users");
+const asyncHandler = require("../middleware/asyncHandler");
 
 exports.getUsers = async (req, res, next) => {
   try {
     const User = await Users.find();
     res.send({ success: true, data: User });
   } catch (err) {
-    res.send({
-      success: false,
-      Error: err,
-    });
+    next(err);
   }
 };
-exports.getUser = async (req, res, next) => {
-  try {
-    const User = await Users.findById(req.params.id);
-    if (User === null) {
-      res.send({
-        success: false,
-        Error: `${req.params.id} ID-тай хэрэглэгч байхгүй байна.`,
-      });
-    } else {
-      res.send({ success: true, data: User });
-    }
-  } catch (err) {
+exports.getUser = asyncHandler(async (req, res, next) => {
+  const User = await Users.findById(req.params.id);
+  if (!User) {
     res.send({
       success: false,
-      Error: err,
+      Error: `${req.params.id} ID-тай хэрэглэгч байхгүй байна.`,
     });
   }
-};
-exports.postUsers = async (req, res, next) => {
-  console.log(req.body);
-  try {
-    const User = await Users.create(req.body);
-    res.send({
-      success: true,
-      data: User,
-    });
-  } catch (err) {
-    res.send({
-      success: false,
-      Error: err,
-    });
-  }
-};
 
-exports.updateUser = async (req, res, next) => {
-  try {
-    const User = await Users.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
-    if (User === null) {
-      res.send({
-        success: false,
-        Error: `${req.params.id} ID-тай хэрэглэгч байхгүй байна.`,
-      });
-    } else {
-      res.send({ success: true, data: User });
-    }
-  } catch (err) {
-    res.send({
-      success: false,
-      Error: err,
-    });
-  }
-};
+  res.send({ success: true, data: User });
+});
+exports.postUsers = asyncHandler(async (req, res, next) => {
+  const User = await Users.create(req.body);
+  res.send({
+    success: true,
+    data: User,
+  });
+});
 
-exports.deleteUser = async (req, res, next) => {
-  try {
-    const User = await Users.findByIdAndDelete(req.params.id);
-    if (User === null) {
-      res.send({
-        success: false,
-        Error: `${req.params.id} ID-тай хэрэглэгч байхгүй байна.`,
-      });
-    } else {
-      res.send({ success: true, data: User });
-    }
-  } catch (err) {
+exports.updateUser = asyncHandler(async (req, res, next) => {
+  const User = await Users.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+  if (!User) {
     res.send({
       success: false,
-      Error: err,
+      Error: `${req.params.id} ID-тай хэрэглэгч байхгүй байна.`,
     });
   }
-};
+  res.send({ success: true, data: User });
+});
+
+exports.deleteUser = asyncHandler(async (req, res, next) => {
+  const User = await Users.findByIdAndDelete(req.params.id);
+  if (!User) {
+    res.send({
+      success: false,
+      Error: `${req.params.id} ID-тай хэрэглэгч байхгүй байна.`,
+    });
+  }
+  res.send({ success: true, data: User });
+});

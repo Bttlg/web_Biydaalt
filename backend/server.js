@@ -11,9 +11,11 @@ const cors = require("cors");
 const colors = require("colors");
 const logger = require("./middleware/logger");
 const morgan = require("morgan");
+const errorHandler = require("./middleware/error");
 
 const app = express();
 
+//Аппын тохиргоог process.env-руу ачаалах
 dotenv.config();
 
 //Create a write stream
@@ -22,9 +24,7 @@ var accessLogStream = rfs.createStream(path.join("access.log"), {
   path: path.join(__dirname, "log"),
 });
 
-app.use(logger);
-app.use(morgan("combined", { stream: accessLogStream }));
-
+//mongoDB-тэй холбох
 mongoose.connect(process.env.DATABASE_ACCESS, () => {
   console.log(
     `mongoDB холбогдлоо : ${mongoose.connection.host}`.cyan.underline.bold
@@ -32,8 +32,11 @@ mongoose.connect(process.env.DATABASE_ACCESS, () => {
 });
 
 app.use(express.json());
-// app.use(cors());
+app.use(logger);
+app.use(morgan("combined", { stream: accessLogStream }));
+app.use(cors());
 app.use("/api/users", usersRoutes);
+app.use(errorHandler);
 
 app.listen(process.env.PORT, () =>
   console.log(
