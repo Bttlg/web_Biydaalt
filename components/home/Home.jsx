@@ -7,12 +7,14 @@ import Dropdown from "./dropdown/Dropdown";
 import Menu from "../menu/Menu";
 import Modal from "../modal/Modal";
 import Shadow from "../modal/shadow/Shadow";
-import Profile from "../profile/Profile";
+import StudentProfile from "../studentProfile/StudentProfile";
+import TeacherProfile from "../teacherProfile/TeacherProfile";
 import Lesson from "../lesson/Lesson";
 import Teacher from "../teachers/Teacher";
 
 const Home = (props) => {
   const [tolow, setTolow] = useState(true);
+  const [user, setUser] = useState(props.location.state.data);
   const [teachers, setTeachers] = useState(props.location.state.teachers);
   const [showModal, setShowModal] = useState(false);
   const [showLessons, setShowLessons] = useState(false);
@@ -34,7 +36,7 @@ const Home = (props) => {
       ) : null}
       <div className="home-column-1">
         <Navbar tolow={tolow} setTolow={setTolow} />
-        <Dropdown user={props.location.state} />
+        <Dropdown user={user} />
       </div>
       <div className="home-column-2">
         {tolow ? (
@@ -49,14 +51,16 @@ const Home = (props) => {
           className="home-row-1"
           style={{ height: windowHeight, width: "100%" }}
         >
-          <Profile />
-
+          {user.role === "teacher" ? (
+            <TeacherProfile user={user} />
+          ) : (
+            <StudentProfile user={user} />
+          )}
           {showLessons ? (
             <div className="lessonsContainer">
-              <Lesson />{" "}
+              <Lesson />
             </div>
           ) : null}
-
           {showTeachers ? (
             <div className="teachersContainer">
               {teachers.map((el, index) => {

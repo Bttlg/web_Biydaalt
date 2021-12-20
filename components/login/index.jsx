@@ -60,6 +60,7 @@ const Login = () => {
               pathname: "/Home",
               state: {
                 data: el,
+                teachers: teachers,
               },
             });
             console.log(el);

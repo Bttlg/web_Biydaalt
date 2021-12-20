@@ -13,12 +13,13 @@ const Dropdown1 = ({ user }) => {
     <div className="dropdownContainer">
       <div className="dropdown-menu unselect" onClick={seeDropdownFunc}>
         <img
-          src="https://sisi.num.edu.mn/sisi_v4/modules/student/getstpic.ashx?id=6464a2aa-04ca-474d-b875-c0c2cbd6b956"
+          src={user.photo}
           alt=""
           width="24px"
           height="29px"
+          style={{ marginRight: "5px" }}
         />
-        <p className="username">Баттулга</p>
+        <p className="username">{user.firstName}</p>
         <IoMdArrowDropdown className="arrow" />
       </div>
       {seeDropdown ? (
