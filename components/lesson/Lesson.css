@@ -1,11 +1,41 @@
 .lessonContainer {
+  margin-right: 10px;
   margin: 5px 10px;
   height: 100%;
-  width: 90%;
+  width: 93%;
   background-color: #fff;
   padding: 10px;
   border-radius: 5px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.lessonElement {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  border-color: #eeeff1;
+  padding: 6px 30px;
+  margin-top: 20px;
+}
+.lessonElement:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.starIcon {
+  color: #f1c40f;
+  font-size: 25px;
+}
+.lessonName {
+  color: #5256aa;
+  font-size: 14px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 @media (max-width: 991px) {

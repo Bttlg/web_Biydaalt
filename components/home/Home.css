@@ -23,8 +23,8 @@
 .lessonsContainer {
   display: flex;
   flex-direction: column;
-  height: 85%;
-  width: 60%;
+  height: 90%;
+  width: 40%;
 }
 .teachersContainer {
   display: flex;

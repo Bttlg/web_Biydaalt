@@ -9,10 +9,9 @@ import Modal from "../modal/Modal";
 import Shadow from "../modal/shadow/Shadow";
 import StudentProfile from "../studentProfile/StudentProfile";
 import TeacherProfile from "../teacherProfile/TeacherProfile";
-import ResetPassword from "../resetPassword/ReserPassword";
+import ResetPassword from "../resetPassword/ResetPassword";
 import Lesson from "../lesson/Lesson";
 import Teacher from "../teachers/Teacher";
-import { GiTriquetra } from "react-icons/gi";
 
 const Home = (props) => {
   const [tolow, setTolow] = useState(true);

@@ -16,7 +16,7 @@ import {
 import Login from "../login";
 import Navbar from "../navbar/Navbar";
 import Home from "../home/Home";
-import ResetPassword from "../resetPassword/ReserPassword";
+import Lesson from "../lesson/Lesson";
 
 const Header = () => {
   return (
@@ -24,12 +24,10 @@ const Header = () => {
       <HashRouter>
         <div className="componentContainer">
           <Switch>
-            {/* <Route exact path="/" component={Home} /> */}
             <Route exact path="/Home" component={Home} />
             <Route exact path="/" component={Login} />
             <Route path="/Login" component={Login} />
-            {/* <Route exact path="/" component={ResetPassword} /> */}
-            <Route path="/ResetPassword" component={ResetPassword} />
+            {/* <Route path="/" component={Lesson} /> */}
           </Switch>
         </div>
       </HashRouter>
