@@ -5,17 +5,19 @@ import "./Menu.css";
 let w = window.innerWidth;
 let h = window.innerHeight - 60;
 
-const Menu = ({ setShowModal, setShowLessons, setShowTeachers }) => {
+const Menu = ({ setShowModal, setShowLessons, setShowTeachers, setReset }) => {
   const showModalConfirmation = () => {
     setShowModal(true);
   };
   const showLessonsList = () => {
     setShowTeachers(false);
     setShowLessons(true);
+    setReset(true);
   };
   const showTeachersList = () => {
     setShowLessons(false);
     setShowTeachers(true);
+    setReset(true);
   };
   return (
     <div className="menuContainer">

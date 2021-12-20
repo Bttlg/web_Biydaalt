@@ -3,7 +3,7 @@ import "./Dropdown.css";
 
 import { IoMdArrowDropdown } from "react-icons/io";
 
-const Dropdown1 = ({ user }) => {
+const Dropdown1 = ({ user, setReset }) => {
   const [seeDropdown, setSeeDropdown] = useState(false);
   const seeDropdownFunc = () => {
     if (seeDropdown) setSeeDropdown(false);
@@ -25,7 +25,14 @@ const Dropdown1 = ({ user }) => {
       {seeDropdown ? (
         <ul className="dropdown-element unselect">
           <li className="elements">Хувийн мэдээлэл</li>
-          <li className="elements">Нууц үг солих</li>
+          <li
+            className="elements"
+            onClick={() => {
+              setReset(false), setSeeDropdown(false);
+            }}
+          >
+            Нууц үг солих
+          </li>
         </ul>
       ) : null}
     </div>

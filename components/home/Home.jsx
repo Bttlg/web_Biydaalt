@@ -9,12 +9,15 @@ import Modal from "../modal/Modal";
 import Shadow from "../modal/shadow/Shadow";
 import StudentProfile from "../studentProfile/StudentProfile";
 import TeacherProfile from "../teacherProfile/TeacherProfile";
+import ResetPassword from "../resetPassword/ReserPassword";
 import Lesson from "../lesson/Lesson";
 import Teacher from "../teachers/Teacher";
+import { GiTriquetra } from "react-icons/gi";
 
 const Home = (props) => {
   const [tolow, setTolow] = useState(true);
   const [user, setUser] = useState(props.location.state.data);
+  const [reset, setReset] = useState(true);
   const [teachers, setTeachers] = useState(props.location.state.teachers);
   const [showModal, setShowModal] = useState(false);
   const [showLessons, setShowLessons] = useState(false);
@@ -36,7 +39,7 @@ const Home = (props) => {
       ) : null}
       <div className="home-column-1">
         <Navbar tolow={tolow} setTolow={setTolow} />
-        <Dropdown user={user} />
+        <Dropdown user={user} setReset={setReset} />
       </div>
       <div className="home-column-2">
         {tolow ? (
@@ -45,30 +48,44 @@ const Home = (props) => {
             setShowModal={setShowModal}
             setShowLessons={setShowLessons}
             setShowTeachers={setShowTeachers}
+            setReset={setReset}
           />
         ) : null}
-        <div
-          className="home-row-1"
-          style={{ height: windowHeight, width: "100%" }}
-        >
-          {user.role === "teacher" ? (
-            <TeacherProfile user={user} />
-          ) : (
-            <StudentProfile user={user} />
-          )}
-          {showLessons ? (
-            <div className="lessonsContainer">
-              <Lesson />
-            </div>
-          ) : null}
-          {showTeachers ? (
-            <div className="teachersContainer">
-              {teachers.map((el, index) => {
-                return <Teacher key={index} el={el} />;
-              })}
-            </div>
-          ) : null}
-        </div>
+        {reset ? (
+          <div
+            className="home-row-1"
+            style={{ height: windowHeight, width: "100%" }}
+          >
+            {user.role === "teacher" ? (
+              <TeacherProfile user={user} />
+            ) : (
+              <StudentProfile user={user} />
+            )}
+            {showLessons ? (
+              <div className="lessonsContainer">
+                <Lesson />
+              </div>
+            ) : null}
+            {showTeachers ? (
+              <div className="teachersContainer">
+                {teachers.map((el, index) => {
+                  return <Teacher key={index} el={el} />;
+                })}
+              </div>
+            ) : null}
+          </div>
+        ) : (
+          <div
+            className="home-row-1"
+            style={{ height: windowHeight, width: "100%" }}
+          >
+            <ResetPassword
+              user={user}
+              setReset={setReset}
+              setShowTeachers={setShowTeachers}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

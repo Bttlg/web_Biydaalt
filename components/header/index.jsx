@@ -16,6 +16,7 @@ import {
 import Login from "../login";
 import Navbar from "../navbar/Navbar";
 import Home from "../home/Home";
+import ResetPassword from "../resetPassword/ReserPassword";
 
 const Header = () => {
   return (
@@ -27,6 +28,8 @@ const Header = () => {
             <Route exact path="/Home" component={Home} />
             <Route exact path="/" component={Login} />
             <Route path="/Login" component={Login} />
+            {/* <Route exact path="/" component={ResetPassword} /> */}
+            <Route path="/ResetPassword" component={ResetPassword} />
           </Switch>
         </div>
       </HashRouter>
