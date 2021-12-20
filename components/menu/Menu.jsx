@@ -23,9 +23,7 @@ const Menu = ({ setShowModal, setShowLessons, setShowTeachers, setReset }) => {
     <div className="menuContainer">
       <div className="homeRow-1" style={{ height: h }}>
         <ul>
-          <Link to="/Home">
-            <li>Нүүр хуудас</li>
-          </Link>
+          <li onClick={showTeachersList}>Нүүр хуудас</li>
           <li onClick={showTeachersList}>Багш нарын жагсаалт</li>
           <li onClick={showLessonsList}>Хичээлийн жагсаалт</li>
         </ul>
