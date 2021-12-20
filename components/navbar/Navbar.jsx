@@ -25,9 +25,9 @@ const Navbar = ({ tolow, setTolow }) => {
       <div className="navbarRow-1">
         <BiMenu className="menuIcon" onClick={changeTolow} />
         <img
+          className="sisiLogoBlack"
           src="https://sisi.num.edu.mn/sisi_v4/static/image/sisi-logo-black.png"
           alt=""
-          style={{ marginLeft: "10px" }}
         />
       </div>
       <div className="navbarRow-2"></div>

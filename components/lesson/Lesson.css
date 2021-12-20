@@ -1,0 +1,17 @@
+.lessonContainer {
+  margin: 5px 10px;
+  height: 100%;
+  width: 90%;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+@media (max-width: 991px) {
+  .lessonsContainer {
+    margin-left: 20px;
+    width: 95%;
+    overflow: auto;
+  }
+}

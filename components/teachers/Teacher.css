@@ -1,0 +1,71 @@
+.teacherContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 10px;
+  height: 100%;
+  width: 100%;
+  background-color: #f1f2f7;
+  border-radius: 5px;
+  margin-right: 50px;
+}
+
+.teacherColumn-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  width: 90%;
+  font-size: 16px;
+  border-bottom: 1px solid transparent;
+  border-color: #bdc3c7;
+  background-color: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 1px;
+  padding: 10px;
+}
+.undsenMedeelel {
+  color: #7f8c8d;
+  padding: 10px 15px;
+}
+
+.delgerenguiHarah {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #333333;
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-right: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.teacherColumn-2 {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  background-color: #fff;
+  padding-top: 10px;
+  padding: 10px;
+}
+
+.teacherImageContainer {
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.teacherImg {
+  height: 99%;
+}
+
+@media (max-width: 991px) {
+  .teachersContainer {
+    margin-left: 20px;
+    width: 95%;
+    overflow: visible;
+  }
+}

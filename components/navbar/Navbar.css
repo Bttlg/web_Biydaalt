@@ -2,10 +2,24 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin-top: -8px;
   padding: 10px 0px 10px 0px;
+  margin-top: 2px;
 }
 .menuIcon {
-  padding-left: 10px;
-  font-size: 30px;
+  color: #777777;
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+.sisiLogoBlack {
+  margin-left: 10px;
+  width: 110px;
+  height: 30px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }

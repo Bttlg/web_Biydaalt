@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Menu.css";
 let w = window.innerWidth;
-let h = window.innerHeight;
+let h = window.innerHeight - 60;
 
-const Menu = ({ setShowModal }) => {
+const Menu = ({ setShowModal, setShowLessons, setShowTeachers }) => {
   const showModalConfirmation = () => {
     setShowModal(true);
   };
+  const showLessonsList = () => {
+    setShowTeachers(false);
+    setShowLessons(true);
+  };
+  const showTeachersList = () => {
+    setShowLessons(false);
+    setShowTeachers(true);
+  };
   return (
-    <div className="homeColumn-2">
+    <div className="menuContainer">
       <div className="homeRow-1" style={{ height: h }}>
         <ul>
-          <li>Нүүр хуудас</li>
-          <li>Багш нарын жагсаалт</li>
-          <li>Хичээлийн жагсаалт</li>
+          <Link to="/Home">
+            <li>Нүүр хуудас</li>
+          </Link>
+          <li onClick={showTeachersList}>Багш нарын жагсаалт</li>
+          <li onClick={showLessonsList}>Хичээлийн жагсаалт</li>
         </ul>
         <p
           className="logout"

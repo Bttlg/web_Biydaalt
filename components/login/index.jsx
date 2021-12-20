@@ -22,8 +22,8 @@ let captchaArray = [
 ];
 
 const Login = () => {
-  const [users, setUsers] = useState();
-  let user = null;
+  const [students, setStudents] = useState();
+  const [teachers, setTeachers] = useState();
   const [error, setError] = useState();
   const history = useHistory();
   const location = useLocation();
@@ -37,24 +37,50 @@ const Login = () => {
   let h = window.innerHeight;
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/users").then((response) => {
-      setUsers(response.data.data);
+    axios.get("http://localhost:8000/api/students").then((response) => {
+      setStudents(response.data.data);
+    });
+    axios.get("http://localhost:8000/api/teachers").then((response) => {
+      setTeachers(response.data.data);
     });
   }, []);
 
   const newtreh = (event) => {
     if (event.key === "Enter" || event.type == "click") {
       if (captcha === captchaValue && username !== "" && password !== "") {
-        // history.push("/Navbar");
         event.preventDefault();
-        users.forEach((el, index) => {
+        students.forEach((el, index) => {
           if (username === el.username && password === el.password) {
-            user = el;
             setUsername("");
             setPassword("");
             setError("");
             document.querySelector(".alert").classList.remove("alert-danger");
-            window.location.replace("/#/Home");
+            // window.location.replace("/#/Home");
+            history.push({
+              pathname: "/Home",
+              state: {
+                data: el,
+              },
+            });
+            console.log(el);
+            return;
+          }
+        });
+        teachers.forEach((el, index) => {
+          if (username === el.username && password === el.password) {
+            setUsername("");
+            setPassword("");
+            setError("");
+            document.querySelector(".alert").classList.remove("alert-danger");
+            // window.location.replace("/#/Home");
+            history.push({
+              pathname: "/Home",
+              state: {
+                data: el,
+                teachers: teachers,
+              },
+            });
+            console.log(el);
             return;
           }
         });

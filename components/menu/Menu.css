@@ -1,6 +1,11 @@
-.homeColumn-2 {
+.menuContainer {
   display: flex;
   flex-direction: row;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 
 .homeRow-1 {
@@ -10,7 +15,7 @@
   align-items: center;
   width: 210px;
   background-color: #2a3542;
-  position: fixed;
+  /* position: fixed; */
 }
 ul {
   list-style: none;
@@ -38,4 +43,5 @@ li:hover,
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 15px 10px 15px 5px;
   margin-top: 5px;
+  margin-bottom: 10.5%;
 }

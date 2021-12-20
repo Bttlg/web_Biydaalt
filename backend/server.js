@@ -4,9 +4,10 @@ const dotenv = require("dotenv");
 const fs = require("fs");
 const rfs = require("rotating-file-stream");
 const path = require("path");
-const routesUrls = require("./routes/users");
+const routesUrls = require("./routes/students");
 //Router оруулж ирэх
-const usersRoutes = require("./routes/users");
+const studentsRoutes = require("./routes/students");
+const teachersRoutes = require("./routes/teachers");
 const cors = require("cors");
 const colors = require("colors");
 const logger = require("./middleware/logger");
@@ -35,7 +36,8 @@ app.use(express.json());
 app.use(logger);
 app.use(morgan("combined", { stream: accessLogStream }));
 app.use(cors());
-app.use("/api/users", usersRoutes);
+app.use("/api/students", studentsRoutes);
+app.use("/api/teachers", teachersRoutes);
 app.use(errorHandler);
 
 app.listen(process.env.PORT, () =>
