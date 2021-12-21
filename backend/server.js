@@ -6,6 +6,7 @@ const rfs = require("rotating-file-stream");
 const path = require("path");
 const routesUrls = require("./routes/students");
 //Router оруулж ирэх
+const lessonsRoutes = require("./routes/lessons");
 const studentsRoutes = require("./routes/students");
 const teachersRoutes = require("./routes/teachers");
 const cors = require("cors");
@@ -36,6 +37,7 @@ app.use(express.json());
 app.use(logger);
 app.use(morgan("combined", { stream: accessLogStream }));
 app.use(cors());
+app.use("/api/lessons", lessonsRoutes);
 app.use("/api/students", studentsRoutes);
 app.use("/api/teachers", teachersRoutes);
 app.use(errorHandler);
