@@ -5,7 +5,13 @@ import "./Menu.css";
 let w = window.innerWidth;
 let h = window.innerHeight - 60;
 
-const Menu = ({ setShowModal, setShowLessons, setShowTeachers, setReset }) => {
+const Menu = ({
+  setShowModal,
+  setShowLessons,
+  setShowTeachers,
+  setReset,
+  setShowLessonsDelgerengui,
+}) => {
   const showModalConfirmation = () => {
     setShowModal(true);
   };
@@ -13,11 +19,13 @@ const Menu = ({ setShowModal, setShowLessons, setShowTeachers, setReset }) => {
     setShowTeachers(false);
     setShowLessons(true);
     setReset(true);
+    setShowLessonsDelgerengui(false);
   };
   const showTeachersList = () => {
     setShowLessons(false);
     setShowTeachers(true);
     setReset(true);
+    setShowLessonsDelgerengui(false);
   };
   return (
     <div className="menuContainer">

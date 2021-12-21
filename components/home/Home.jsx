@@ -9,6 +9,7 @@ import Modal from "../modal/Modal";
 import Shadow from "../modal/shadow/Shadow";
 import StudentProfile from "../studentProfile/StudentProfile";
 import TeacherProfile from "../teacherProfile/TeacherProfile";
+import LessonDelgerengui from "../lessonDelgerengui/LessonDelgerengui";
 import ResetPassword from "../resetPassword/ResetPassword";
 import Lesson from "../lesson/Lesson";
 import Teacher from "../teachers/Teacher";
@@ -21,6 +22,7 @@ const Home = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [showLessons, setShowLessons] = useState(false);
   const [showTeachers, setShowTeachers] = useState(true);
+  const [showLessonsDelgerengui, setShowLessonsDelgerengui] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   window.addEventListener(
@@ -48,6 +50,7 @@ const Home = (props) => {
             setShowLessons={setShowLessons}
             setShowTeachers={setShowTeachers}
             setReset={setReset}
+            setShowLessonsDelgerengui={setShowLessonsDelgerengui}
           />
         ) : null}
         {reset ? (
@@ -55,14 +58,16 @@ const Home = (props) => {
             className="home-row-1"
             style={{ height: windowHeight, width: "100%" }}
           >
-            {user.role === "teacher" ? (
+            {showLessonsDelgerengui ? (
+              <LessonDelgerengui />
+            ) : user.role === "teacher" ? (
               <TeacherProfile user={user} />
             ) : (
               <StudentProfile user={user} />
             )}
             {showLessons ? (
               <div className="lessonsContainer">
-                <Lesson />
+                <Lesson setShowLessonsDelgerengui={setShowLessonsDelgerengui} />
               </div>
             ) : null}
             {showTeachers ? (
@@ -82,6 +87,8 @@ const Home = (props) => {
               user={user}
               setReset={setReset}
               setShowTeachers={setShowTeachers}
+              setShowLessonsDelgerengui={setShowLessonsDelgerengui}
+              setShowLessons={setShowLessons}
             />
           </div>
         )}

@@ -29,7 +29,7 @@
 .teachersContainer {
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 95%;
   width: 45%;
   overflow: auto;
 }

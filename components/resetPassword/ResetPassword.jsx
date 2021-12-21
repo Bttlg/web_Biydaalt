@@ -4,7 +4,13 @@ import "./ResetPassword.css";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 
-const ResetPassword = ({ user, setReset, setShowTeachers }) => {
+const ResetPassword = ({
+  user,
+  setReset,
+  setShowTeachers,
+  setShowLessonsDelgerengui,
+  setShowLessons,
+}) => {
   const location = useLocation();
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState(null);
@@ -41,6 +47,8 @@ const ResetPassword = ({ user, setReset, setShowTeachers }) => {
         setErrorText(null);
         setReset(true);
         setShowTeachers(true);
+        setShowLessons(false);
+        setShowLessonsDelgerengui(false);
       } else {
         setError(true);
         setErrorText("Хуучин нууц үг таарахгүй байна.");
@@ -55,7 +63,6 @@ const ResetPassword = ({ user, setReset, setShowTeachers }) => {
       <div className="reset-column-1">Нууц үг өөрчлөх</div>
       <div className="reset-column-2">
         {error ? <div className="resetError">{errorText}</div> : null}
-
         <div className="resetInput">
           <span className="resetText">Хуучин нууц үг</span>
           <input

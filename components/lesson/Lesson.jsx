@@ -1,99 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Lesson.css";
+
+import axios from "axios";
 
 import { AiFillStar } from "react-icons/ai";
 
-const Lesson = () => {
+const Lesson = ({ setShowLessonsDelgerengui }) => {
+  const [lessons, setLessons] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/lessons")
+      .then((response) => {
+        console.log(response.data.data);
+        setLessons(response.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const clickLesson = () => {
+    setShowLessonsDelgerengui(true);
+  };
+
   return (
     <div className="lessonContainer">
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI203 - Магадлал ба санамсаргүй процесс (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">ICSI202 - Өгөгдлийн бүтэц (3 кр)</span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
-      <div className="lessonElement">
-        <AiFillStar className="starIcon" />
-        <span className="lessonName">
-          ICSI201 - Объект хандлагат програмчлал (3 кр)
-        </span>
-      </div>
+      {lessons.map((el, index) => {
+        return (
+          <div className="lessonElement" onClick={clickLesson} key={index}>
+            <AiFillStar className="starIcon" />
+            <span className="lessonName">
+              {el.lessonIndex} - {el.lessonName} ({el.credit})
+            </span>
+          </div>
+        );
+      })}
     </div>
   );
 };
