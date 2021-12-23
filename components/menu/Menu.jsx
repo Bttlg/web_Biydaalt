@@ -11,6 +11,7 @@ const Menu = ({
   setShowTeachers,
   setReset,
   setShowLessonsDelgerengui,
+  setTeacherShowLesson,
 }) => {
   const showModalConfirmation = () => {
     setShowModal(true);
@@ -20,12 +21,14 @@ const Menu = ({
     setShowLessons(true);
     setReset(true);
     setShowLessonsDelgerengui(false);
+    setTeacherShowLesson(false);
   };
   const showTeachersList = () => {
     setShowLessons(false);
     setShowTeachers(true);
     setReset(true);
     setShowLessonsDelgerengui(false);
+    setTeacherShowLesson(false);
   };
   return (
     <div className="menuContainer">

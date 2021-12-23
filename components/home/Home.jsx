@@ -25,6 +25,8 @@ const Home = (props) => {
   const [showLessonsDelgerengui, setShowLessonsDelgerengui] = useState(false);
   const [lessonId, setLessonId] = useState("");
   const [lesson, setLesson] = useState("");
+  const [teacherShowLesson, setTeacherShowLesson] = useState(false);
+  const [teacherId, setTeacherId] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   window.addEventListener(
@@ -53,6 +55,7 @@ const Home = (props) => {
             setShowTeachers={setShowTeachers}
             setReset={setReset}
             setShowLessonsDelgerengui={setShowLessonsDelgerengui}
+            setTeacherShowLesson={setTeacherShowLesson}
           />
         ) : null}
         {reset ? (
@@ -73,13 +76,24 @@ const Home = (props) => {
                   setShowLessonsDelgerengui={setShowLessonsDelgerengui}
                   setLessonId={setLessonId}
                   setLesson={setLesson}
+                  teacherShowLesson={teacherShowLesson}
+                  teacherId={teacherId}
                 />
               </div>
             ) : null}
             {showTeachers ? (
               <div className="teachersContainer">
                 {teachers.map((el, index) => {
-                  return <Teacher key={index} el={el} />;
+                  return (
+                    <Teacher
+                      key={index}
+                      el={el}
+                      setShowLessons={setShowLessons}
+                      setTeacherShowLesson={setTeacherShowLesson}
+                      setShowTeachers={setShowTeachers}
+                      setTeacherId={setTeacherId}
+                    />
+                  );
                 })}
               </div>
             ) : null}
