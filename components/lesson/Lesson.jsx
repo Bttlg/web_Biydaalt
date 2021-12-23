@@ -5,7 +5,7 @@ import axios from "axios";
 
 import { AiFillStar } from "react-icons/ai";
 
-const Lesson = ({ setShowLessonsDelgerengui }) => {
+const Lesson = ({ setShowLessonsDelgerengui, setLessonId, setLesson }) => {
   const [lessons, setLessons] = useState([]);
   useEffect(() => {
     axios
@@ -19,15 +19,23 @@ const Lesson = ({ setShowLessonsDelgerengui }) => {
       });
   }, []);
 
-  const clickLesson = () => {
-    setShowLessonsDelgerengui(true);
-  };
-
   return (
     <div className="lessonContainer">
       {lessons.map((el, index) => {
         return (
-          <div className="lessonElement" onClick={clickLesson} key={index}>
+          <div
+            className="lessonElement"
+            onClick={() => {
+              setLessonId(el._id);
+              setShowLessonsDelgerengui(true);
+              axios
+                .get(`http://localhost:8000/api/lessons/${el._id}`)
+                .then((response) => {
+                  setLesson(response.data.data);
+                });
+            }}
+            key={el._id}
+          >
             <AiFillStar className="starIcon" />
             <span className="lessonName">
               {el.lessonIndex} - {el.lessonName} ({el.credit})

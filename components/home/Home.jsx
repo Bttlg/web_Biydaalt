@@ -23,6 +23,8 @@ const Home = (props) => {
   const [showLessons, setShowLessons] = useState(false);
   const [showTeachers, setShowTeachers] = useState(true);
   const [showLessonsDelgerengui, setShowLessonsDelgerengui] = useState(false);
+  const [lessonId, setLessonId] = useState("");
+  const [lesson, setLesson] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   window.addEventListener(
@@ -59,7 +61,7 @@ const Home = (props) => {
             style={{ height: windowHeight, width: "100%" }}
           >
             {showLessonsDelgerengui ? (
-              <LessonDelgerengui />
+              <LessonDelgerengui lessonId={lessonId} lesson={lesson} />
             ) : user.role === "teacher" ? (
               <TeacherProfile user={user} />
             ) : (
@@ -67,7 +69,11 @@ const Home = (props) => {
             )}
             {showLessons ? (
               <div className="lessonsContainer">
-                <Lesson setShowLessonsDelgerengui={setShowLessonsDelgerengui} />
+                <Lesson
+                  setShowLessonsDelgerengui={setShowLessonsDelgerengui}
+                  setLessonId={setLessonId}
+                  setLesson={setLesson}
+                />
               </div>
             ) : null}
             {showTeachers ? (

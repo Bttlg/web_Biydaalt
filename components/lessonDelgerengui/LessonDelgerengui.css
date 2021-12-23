@@ -66,3 +66,9 @@
   font-size: 15px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+@media (max-width: 991px) {
+  .lessonDelgerenguiContainer {
+    width: 90%;
+  }
+}
